@@ -1,0 +1,37 @@
+<resources>
+
+    <string name="app_name">XelopesFL</string>
+
+    <!-- FILE SELECTION -->
+    <string name="file_selection_ver_read">Vertical</string>
+    <string name="file_selection_hor_read">Horizontal</string>
+    <string name="file_selection_search">Search file…</string>
+    <string name="file_selection_heading">Select</string>
+    <string name="file_selection_next_btn">start reading</string>
+    <string name="file_selection_heading_rad_btn">file reading type</string>
+
+    <!-- EMPTY FILES DIALOG -->
+    <string name="empty_files_dialog_ok_btn">OK</string>
+    <string name="empty_files_dialog_heading">Empty list of files</string>
+    <string name="empty_files_dialog_msg">Files not selected!</string>
+
+    <!-- DELETE FILE DIALOG -->
+    <string name="delete_file_dialog_no_btn">NO</string>
+    <string name="delete_file_dialog_yes_btn">YES</string>
+    <string name="delete_file_dialog_heading">File deletion</string>
+    <string name="delete_file_dialog_msg">Really delete a file?</string>
+
+    <!-- READING TYPE DIALOG -->
+    <string name="reading_type_dialog_ok_btn">READING</string>
+    <string name="reading_type_dialog_ver_btn">Vertical</string>
+    <string name="reading_type_dialog_hor_btn">Horizontal</string>
+    <string name="reading_type_dialog_heading">Reading type</string>
+    <string name="reading_type_dialog_msg">Select the file reading type.</string>
+
+    <!-- IDENTICAL FILES DIALOG -->
+    <string name="identical_file_dialog_yes_btn">YES</string>
+    <string name="identical_file_dialog_no_btn">NO</string>
+    <string name="identical_file_dialog_heading">Identical files</string>
+    <string name="identical_file_dialog_msg">The file with this name has already been selected.\nWant to add it?</string>
+
+</resources>
