@@ -1,18 +1,24 @@
 package com.example.xelopesfl.Files.Activitys
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.os.Environment
+import android.util.Log
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.example.xelopesfl.Files.Dialogs.DeleteFileDialog
 import com.example.xelopesfl.Files.Dialogs.EmptyFilesDialog
 import com.example.xelopesfl.Files.Dialogs.IdenticalFilesDialog
 import com.example.xelopesfl.Files.Dialogs.ReadingTypeDialog
 import com.example.xelopesfl.R
-
 import kotlinx.android.synthetic.main.activity_file_selection.*
 
 
@@ -51,9 +57,10 @@ class FileSelectionActivity : AppCompatActivity() {
         files_list_view.setOnItemClickListener { parent, view, position, id ->
             onClickListBtn(position)
         }
+
         // initializing the 'next' button
         next_btn.setOnClickListener {
-            onClickNextBtn()
+            permissionStatusChecked()
         }
     }
 
@@ -68,6 +75,25 @@ class FileSelectionActivity : AppCompatActivity() {
             onClickSearch()
         } else {
             onClickDelete(position)
+        }
+    }
+
+    /**
+     * Check the permission to read the files
+     */
+    private fun permissionStatusChecked() {
+
+        val permissionStatus =
+            ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+
+        if (permissionStatus == PackageManager.PERMISSION_GRANTED) {
+            onClickNextBtn()
+        } else {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                1
+            )
         }
     }
 
@@ -125,22 +151,46 @@ class FileSelectionActivity : AppCompatActivity() {
     }
 
     /**
-     * Saving the file path
+     * Saving the file path.
      */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
-            val path = data?.data?.path.toString()
+
+            val path = getPath(data?.data?.path ?: return)
             val fileName = getFileName(path)
 
             if(filesList.contains(fileName)) {
-                val identicalFilesDialog = IdenticalFilesDialog(viewAdapter, pathList, fileName, path)
+                val identicalFilesDialog = IdenticalFilesDialog(
+                    viewAdapter,
+                    pathList,
+                    fileName,
+                    path
+                )
                 identicalFilesDialog.show(supportFragmentManager, "IdenticalFilesDialog")
             } else {
                 pathList.add(path)
                 viewAdapter.insert(fileName, pathList.size - 1)
             }
+        }
+    }
+
+
+    /**
+     * Re-forms the path to the library file.
+     * @param path - the path from which the file name is extracted
+     */
+    private fun getPath(path: String): String {
+
+        val sdcardDir = "/sdcard/"
+        val primaryDir = "/storage/self/"
+        val filePath = path.removePrefix("/document/")
+
+        return when(filePath.substringBefore(':')) {
+            "sdcard" -> sdcardDir + filePath.replace(':', '/')
+            "primary" -> primaryDir + filePath.replace(':', '/')
+            else -> ""
         }
     }
 

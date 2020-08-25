@@ -24,8 +24,8 @@ class ReadingTypeDialog(private var intent : Intent) : DialogFragment() {
                 .setPositiveButton(R.string.reading_type_dialog_ok_btn) { dialogInterface, id ->
                     val radioGroup = super.getDialog()?.findViewById(R.id.reading_type_gr) as RadioGroup
                     when (radioGroup.checkedRadioButtonId) {
-                        R.id.read_type_ver -> intent.putExtra("readType", "ver")
-                        R.id.read_type_hor -> intent.putExtra("readType", "hor")
+                        R.id.read_type_ver -> intent.putExtra("readType", "ver".toString())
+                        R.id.read_type_hor -> intent.putExtra("readType", "hor".toString())
                     }
                     startActivity(intent)
                 }

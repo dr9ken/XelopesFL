@@ -6,9 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".Files.Activitys.FileProcessingActivity">
 
-    <TextView
-        android:id="@+id/vectors_view"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/vectors_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
