@@ -2,16 +2,19 @@ package com.example.xelopesfl.Files.Dialogs
 
 import android.app.AlertDialog
 import android.app.Dialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import androidx.fragment.app.DialogFragment
 import com.example.xelopesfl.R
 
-class IdenticalFilesDialog(private var viewAdapter : ArrayAdapter<String>,
-                           private var pathList : ArrayList<String>,
-                           private val fileName : String,
-                           private val path: String) : DialogFragment() {
+/**
+ * @author Maxim Kolpashikov
+ */
+
+class IdenticalFilesDialog(private var _viewAdapter : ArrayAdapter<String>,
+                           private var _pathList : ArrayList<String>,
+                           private val _fileName : String,
+                           private val _path: String) : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
@@ -26,8 +29,8 @@ class IdenticalFilesDialog(private var viewAdapter : ArrayAdapter<String>,
                 }
                 .setNegativeButton(getString(R.string.identical_file_dialog_yes_btn)) { dialogInterface, i ->
                     dialogInterface.cancel()
-                    pathList.add(path)
-                    viewAdapter.insert(fileName, pathList.size - 1)
+                    _pathList.add(_path)
+                    _viewAdapter.insert(_fileName, _pathList.size - 1)
                 }
                 .create()
         } ?: throw IllegalStateException("Activity cannot be null")

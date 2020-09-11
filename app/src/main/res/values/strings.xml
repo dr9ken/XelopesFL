@@ -3,17 +3,32 @@
     <string name="app_name">XelopesFL</string>
 
     <!-- FILE SELECTION -->
+    <string name="file_selection_heading">Select</string>
+
     <string name="file_selection_ver_read">Vertical</string>
     <string name="file_selection_hor_read">Horizontal</string>
     <string name="file_selection_search">Search file…</string>
-    <string name="file_selection_heading">Select</string>
-    <string name="file_selection_next_btn">start reading</string>
+    <string name="file_selection_next_btn">to settings</string>
     <string name="file_selection_heading_rad_btn">file reading type</string>
+
+    <!-- FILE READING SETTINGS -->
+    <string name="reading_settings_selecting_attribute">Selecting an attribute</string>
+    <string name="reading_settings_heading">Settings</string>
+    <string name="reading_settings_comma">Comma \",\"</string>
+    <string name="reading_settings_ver_type">Vertical</string>
+    <string name="reading_settings_hor_type">Horizontal</string>
+    <string name="reading_settings_next_btn">start reading</string>
+    <string name="reading_settings_semicolon">Semicolon \';\'</string>
+    <string name="reading_settings_header_true">With the title</string>
+    <string name="reading_settings_header_false">Without the title</string>
+    <string name="reading_settings_separator">The type of separator:</string>
+    <string name="reading_settings_header">The presence of the header:</string>
+    <string name="reading_settings_reading_type">The type of file read:</string>
 
     <!-- EMPTY FILES DIALOG -->
     <string name="empty_files_dialog_ok_btn">OK</string>
-    <string name="empty_files_dialog_heading">Empty list of files</string>
     <string name="empty_files_dialog_msg">Files not selected!</string>
+    <string name="empty_files_dialog_heading">Empty list of files</string>
 
     <!-- DELETE FILE DIALOG -->
     <string name="delete_file_dialog_no_btn">NO</string>
@@ -29,8 +44,8 @@
     <string name="reading_type_dialog_msg">Select the file reading type.</string>
 
     <!-- IDENTICAL FILES DIALOG -->
-    <string name="identical_file_dialog_yes_btn">YES</string>
     <string name="identical_file_dialog_no_btn">NO</string>
+    <string name="identical_file_dialog_yes_btn">YES</string>
     <string name="identical_file_dialog_heading">Identical files</string>
     <string name="identical_file_dialog_msg">The file with this name has already been selected.\nWant to add it?</string>
 

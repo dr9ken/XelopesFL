@@ -1,26 +1,21 @@
 package com.example.xelopesfl.Files.Activitys
 
-import android.Manifest
 import android.app.Activity
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import android.os.Environment
-import android.util.Log
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import com.example.xelopesfl.Files.Dialogs.DeleteFileDialog
 import com.example.xelopesfl.Files.Dialogs.EmptyFilesDialog
 import com.example.xelopesfl.Files.Dialogs.IdenticalFilesDialog
-import com.example.xelopesfl.Files.Dialogs.ReadingTypeDialog
 import com.example.xelopesfl.R
 import kotlinx.android.synthetic.main.activity_file_selection.*
 
+/**
+ * @author Maxim Kolpashikov
+ */
 
 class FileSelectionActivity : AppCompatActivity() {
 
@@ -60,7 +55,7 @@ class FileSelectionActivity : AppCompatActivity() {
 
         // initializing the 'next' button
         next_btn.setOnClickListener {
-            permissionStatusChecked()
+            onClickNextBtn()
         }
     }
 
@@ -79,46 +74,32 @@ class FileSelectionActivity : AppCompatActivity() {
     }
 
     /**
-     * Check the permission to read the files
-     */
-    private fun permissionStatusChecked() {
-
-        val permissionStatus =
-            ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-
-        if (permissionStatus == PackageManager.PERMISSION_GRANTED) {
-            onClickNextBtn()
-        } else {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                1
-            )
-        }
-    }
-
-    /**
      * Switching to reading files.
      */
     private fun onClickNextBtn() {
 
-        intent = Intent(this, FileProcessingActivity::class.java)
-        intent.putExtra("paths", pathList)
-
         when (pathList.size) {
             0 -> {
+
                 val emptyFilesDialog = EmptyFilesDialog()
                 emptyFilesDialog.show(supportFragmentManager, "EmptyFilesDialog")
             }
-            1 -> {
-                intent.putExtra("readType", "def")
+            else -> {
+
+                val intent = createSettingsIntent()
                 startActivity(intent)
             }
-            else -> {
-                val readingTypeDialog = ReadingTypeDialog(intent)
-                readingTypeDialog.show(supportFragmentManager, "ReadingTypeDialog")
-            }
         }
+    }
+
+    /**
+     * Creating intent for settings-activity.
+     */
+    private fun createSettingsIntent() : Intent {
+
+        intent = Intent(this, SettingsActivity::class.java)
+        intent.putExtra("paths", pathList)
+        return intent
     }
 
     /**
@@ -176,12 +157,12 @@ class FileSelectionActivity : AppCompatActivity() {
         }
     }
 
-
     /**
      * Re-forms the path to the library file.
      * @param path - the path from which the file name is extracted
      */
     private fun getPath(path: String): String {
+
 
         val sdcardDir = "/sdcard/"
         val primaryDir = "/storage/self/"

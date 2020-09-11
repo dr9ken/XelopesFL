@@ -6,6 +6,10 @@ import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import com.example.xelopesfl.R
 
+/**
+ * @author Maxim Kolpashikov
+ */
+
 class EmptyFilesDialog : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

@@ -6,7 +6,6 @@
 
     android:textSize="20sp"
 
-
     android:paddingTop="10dp"
     android:paddingEnd="10dp"
     android:paddingStart="10dp"

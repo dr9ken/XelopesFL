@@ -7,10 +7,14 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.DialogFragment
 import com.example.xelopesfl.R
 
-class DeleteFileDialog(private val btnPos : Int,
-                       private var pathList: ArrayList<String>,
-                       private var filesList : ArrayList<String>,
-                       private var adapter : ArrayAdapter<String>) : DialogFragment() {
+/**
+ * @author Maxim Kolpashikov
+ */
+
+class DeleteFileDialog(private val _btnPos : Int,
+                       private var _pathList: ArrayList<String>,
+                       private var _filesList : ArrayList<String>,
+                       private var _adapter : ArrayAdapter<String>) : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
@@ -25,9 +29,9 @@ class DeleteFileDialog(private val btnPos : Int,
                 }
                 .setNegativeButton(R.string.delete_file_dialog_yes_btn) { dialogInterface, id ->
                     dialogInterface.cancel()
-                    pathList.removeAt(btnPos)
-                    filesList.removeAt(btnPos)
-                    adapter.notifyDataSetChanged()
+                    _pathList.removeAt(_btnPos)
+                    _filesList.removeAt(_btnPos)
+                    _adapter.notifyDataSetChanged()
                 }
                 .create()
         } ?: throw IllegalStateException("Activity cannot be null")
