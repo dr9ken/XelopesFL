@@ -14,7 +14,7 @@ import com.example.xelopesfl.R
 import kotlinx.android.synthetic.main.activity_file_selection.*
 
 /**
- * @author Maxim Kolpashikov
+ * @author Maxim Kolpaschikov
  */
 
 class FileSelectionActivity : AppCompatActivity() {
@@ -80,12 +80,10 @@ class FileSelectionActivity : AppCompatActivity() {
 
         when (pathList.size) {
             0 -> {
-
                 val emptyFilesDialog = EmptyFilesDialog()
                 emptyFilesDialog.show(supportFragmentManager, "EmptyFilesDialog")
             }
             else -> {
-
                 val intent = createSettingsIntent()
                 startActivity(intent)
             }

@@ -8,7 +8,7 @@ import androidx.fragment.app.DialogFragment
 import com.example.xelopesfl.R
 
 /**
- * @author Maxim Kolpashikov
+ * @author Maxim Kolpaschikov
  */
 
 class IdenticalFilesDialog(private var _viewAdapter : ArrayAdapter<String>,

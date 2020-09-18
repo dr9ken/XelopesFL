@@ -1,41 +1,33 @@
 package com.example.xelopesfl.Files.Algorithms
 
+import org.eltech.ddm.classification.ClassificationFunctionSettings
 import org.eltech.ddm.classification.naivebayes.category.NaiveBayesAlgorithm
 import org.eltech.ddm.inputdata.MiningInputStream
 import org.eltech.ddm.miningcore.miningfunctionsettings.EMiningAlgorithmSettings
+import java.io.Serializable
 
 /**
- * @author Maxim Kolpashikov
+ * @author Maxim Kolpaschikov
  */
 
-class NaiveBayesAlgorithm(_stream: MiningInputStream,
-                          _attribute: String) : ClassificationAlgorithm(_stream, _attribute) {
-
-    private var algorithmSettings = EMiningAlgorithmSettings()
+class NaiveBayesAlgorithm(_stream: MiningInputStream, _target: String) : ClassificationAlgorithm() {
 
     init {
 
-        initAlgorithmSettings()
-        initMiningSettings(algorithmSettings)
-        initAlgorithm()
-    }
-
-    /**
-     * Initialization algorithm.
-     */
-    private fun initAlgorithm() {
-
-        algorithm = NaiveBayesAlgorithm(miningSettings)
+        initMiningStream(_stream)
+        initMiningSettings(getAlgorithmSettings(), _target)
+        initAlgorithm(NaiveBayesAlgorithm(miningSettings))
     }
 
     /**
      * Initialization algorithm settings.
      */
-    private fun initAlgorithmSettings() {
+    private fun getAlgorithmSettings() : EMiningAlgorithmSettings {
 
+        val algorithmSettings = EMiningAlgorithmSettings()
         algorithmSettings.name = "Naive Bayes"
-        algorithmSettings.classname =
-            "org.eltech.ddm.classification.naivebayes.category.NaiveBayesAlgorithm"
-    }
+        algorithmSettings.classname = NaiveBayesAlgorithm::class.java.simpleName
 
+        return algorithmSettings
+    }
 }

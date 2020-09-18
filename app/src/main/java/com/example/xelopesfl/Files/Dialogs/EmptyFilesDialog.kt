@@ -7,7 +7,7 @@ import androidx.fragment.app.DialogFragment
 import com.example.xelopesfl.R
 
 /**
- * @author Maxim Kolpashikov
+ * @author Maxim Kolpaschikov
  */
 
 class EmptyFilesDialog : DialogFragment() {
