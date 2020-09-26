@@ -12,16 +12,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Files.Activitys.SettingsActivity"></activity>
-        <activity android:name=".Files.Activitys.FileProcessingActivity" />
-        <activity android:name=".Files.Activitys.FileSelectionActivity" />
-        <activity android:name=".MainActivity">
+
+        <activity android:name=".files.activitys.SettingsActivity" />
+        <activity android:name=".files.activitys.StartAlgorithmActivity" />
+
+        <activity android:name=".files.activitys.FileSelectionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
     </application>
 
 </manifest>

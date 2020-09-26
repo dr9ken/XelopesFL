@@ -1,20 +1,17 @@
-package com.example.xelopesfl.Files.Algorithms
+package com.example.xelopesfl.files.algorithms
 
-import org.eltech.ddm.classification.ClassificationFunctionSettings
 import org.eltech.ddm.classification.naivebayes.category.NaiveBayesAlgorithm
 import org.eltech.ddm.inputdata.MiningInputStream
 import org.eltech.ddm.miningcore.miningfunctionsettings.EMiningAlgorithmSettings
-import java.io.Serializable
 
 /**
  * @author Maxim Kolpaschikov
  */
 
-class NaiveBayesAlgorithm(_stream: MiningInputStream, _target: String) : ClassificationAlgorithm() {
+class NaiveBayesAlgorithmApp(_stream: MiningInputStream, _target: String) : ClassificationAlgorithmApp(_stream) {
 
     init {
 
-        initMiningStream(_stream)
         initMiningSettings(getAlgorithmSettings(), _target)
         initAlgorithm(NaiveBayesAlgorithm(miningSettings))
     }
@@ -26,7 +23,7 @@ class NaiveBayesAlgorithm(_stream: MiningInputStream, _target: String) : Classif
 
         val algorithmSettings = EMiningAlgorithmSettings()
         algorithmSettings.name = "Naive Bayes"
-        algorithmSettings.classname = NaiveBayesAlgorithm::class.java.simpleName
+        algorithmSettings.classname = "org.eltech.ddm.classification.naivebayes.category.NaiveBayesAlgorithm"
 
         return algorithmSettings
     }

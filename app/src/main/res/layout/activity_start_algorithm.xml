@@ -4,20 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".files.activitys.FileSelectionActivity" >
+    tools:context=".files.activitys.StartAlgorithmActivity">
 
     <TextView
-        android:id="@+id/file_request_view"
+        android:id="@+id/start_algorithm_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
 
-        android:text="@string/file_selection_heading"
         android:gravity="start"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@android:color/white"
         android:background="@color/colorPrimaryDark"
+        android:text="Algorithm"
 
         android:paddingTop="10dp"
         android:paddingEnd="10dp"
@@ -28,15 +28,48 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ListView
-        android:id="@+id/files_list_view"
+    <Spinner
+        android:id="@+id/algorithms_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:paddingEnd="10dp"
+        android:paddingStart="10dp"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/start_algorithm_view"
+        app:layout_constraintBottom_toTopOf="@id/targets_spinner" />
+
+    <Spinner
+        android:id="@+id/targets_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:paddingEnd="10dp"
+        android:paddingStart="10dp"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/algorithms_spinner"
+        app:layout_constraintBottom_toTopOf="@id/scroll_vectors_view" />
+
+    <ScrollView
+        android:id="@+id/scroll_vectors_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:paddingBottom="5dp"
 
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/next_btn"
-        app:layout_constraintTop_toBottomOf="@+id/file_request_view" />
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/targets_spinner"
+        app:layout_constraintBottom_toTopOf="@id/next_btn">
+
+        <TextView
+            android:id="@+id/vectors_view"
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </ScrollView>
 
     <Button
         android:id="@+id/next_btn"
@@ -44,7 +77,7 @@
         android:layout_height="wrap_content"
 
         android:textAllCaps="true"
-        android:text="@string/file_selection_next_btn"
+        android:text="start"
         android:textColor="@android:color/white"
         android:background="@drawable/rounded_button"
 
@@ -56,5 +89,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

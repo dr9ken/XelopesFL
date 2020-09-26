@@ -1,4 +1,4 @@
-package com.example.xelopesfl.Files.Algorithms
+package com.example.xelopesfl.files.algorithms
 
 import org.eltech.ddm.classification.ClassificationFunctionSettings
 import org.eltech.ddm.classification.ClassificationMiningModel
@@ -7,25 +7,24 @@ import org.eltech.ddm.inputdata.MiningInputStream
 import org.eltech.ddm.miningcore.algorithms.MiningAlgorithm
 import org.eltech.ddm.miningcore.miningfunctionsettings.EMiningAlgorithmSettings
 import org.eltech.ddm.miningcore.miningtask.EMiningBuildTask
-import java.io.Serializable
 
 /**
- * @author Maxim Kolpaschikovs
+ * @author Maxim Kolpaschikov
  */
 
-abstract class ClassificationAlgorithm public constructor() : Serializable {
+abstract class ClassificationAlgorithmApp(_stream : MiningInputStream) {
 
-    private lateinit var stream : MiningInputStream
+    private val stream : MiningInputStream = _stream
     private lateinit var miningAlgorithm : MiningAlgorithm
     protected lateinit var miningSettings : ClassificationFunctionSettings
 
     /**
      * Running the algorithm.
      */
-    public fun run() : ClassificationMiningModel? {
+    fun run() : ClassificationMiningModel {
 
         val buildTask = createBuildTask()
-        return buildTask.execute() as ClassificationMiningModel?
+        return buildTask.execute() as ClassificationMiningModel
     }
 
     /**
@@ -33,14 +32,6 @@ abstract class ClassificationAlgorithm public constructor() : Serializable {
      */
     protected fun initAlgorithm(algorithm : MiningAlgorithm) {
         miningAlgorithm = algorithm
-    }
-
-    /**
-     * Initialization mining stream.
-     */
-    protected fun initMiningStream(stream: MiningInputStream) {
-        this.stream = stream
-        this.stream.open()
     }
 
     /**
@@ -61,7 +52,8 @@ abstract class ClassificationAlgorithm public constructor() : Serializable {
         val buildTask = EMiningBuildTask()
         buildTask.miningAlgorithm = miningAlgorithm
         buildTask.miningSettings = miningSettings
-        buildTask.executionEnvironment = ConcurrencyExecutionEnvironment(stream)
+        buildTask.executionEnvironment = ConcurrencyExecutionEnvironment(1, stream)
+
         return buildTask
     }
 

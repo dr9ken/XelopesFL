@@ -1,4 +1,4 @@
-package com.example.xelopesfl.Files.Dialogs
+package com.example.xelopesfl.files.dialogs
 
 import android.app.Dialog
 import android.app.AlertDialog

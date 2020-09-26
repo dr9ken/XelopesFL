@@ -1,4 +1,4 @@
-package com.example.xelopesfl.Files.Activitys
+package com.example.xelopesfl.files.activitys
 
 import android.app.Activity
 import android.content.Intent
@@ -7,10 +7,11 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import com.example.xelopesfl.Files.Dialogs.DeleteFileDialog
-import com.example.xelopesfl.Files.Dialogs.EmptyFilesDialog
-import com.example.xelopesfl.Files.Dialogs.IdenticalFilesDialog
+import com.example.xelopesfl.files.dialogs.DeleteFileDialog
+import com.example.xelopesfl.files.dialogs.EmptyFilesDialog
+import com.example.xelopesfl.files.dialogs.IdenticalFilesDialog
 import com.example.xelopesfl.R
+import com.example.xelopesfl.files.algorithms.AlgorithmSettings
 import kotlinx.android.synthetic.main.activity_file_selection.*
 
 /**
@@ -95,8 +96,11 @@ class FileSelectionActivity : AppCompatActivity() {
      */
     private fun createSettingsIntent() : Intent {
 
+        val settings = AlgorithmSettings()
+        settings.paths = pathList
+
         intent = Intent(this, SettingsActivity::class.java)
-        intent.putExtra("paths", pathList)
+        intent.putExtra(AlgorithmSettings::class.java.simpleName, settings)
         return intent
     }
 
@@ -105,7 +109,7 @@ class FileSelectionActivity : AppCompatActivity() {
      */
     private fun onClickSearch() {
 
-        fileIntent.type = "text/*"
+        fileIntent.type = "*/*"
         this.startActivityForResult(
             Intent.createChooser(
                 fileIntent,
